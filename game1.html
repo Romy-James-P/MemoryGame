@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="game1.css" />
+  </head>
+  <body>
+    <div class="container1">
+      <h2>Memory Game</h2>
+      <div class="timer-score">
+        <h3>Time:<span id="timer">60</span>s</h3>
+        <h3>Score:<span id="score">0</span></h3>
+      </div>
+      <div class="game"></div>
+      <button class="restart" onclick="window.location.reload();">Restart</button>
+    </div>
+    <script>
+      const emojis = [
+        "❤️",
+        "❤️",
+        "🤩",
+        "🤩",
+        "😎",
+        "😎",
+        "😵",
+        "😵",
+        "😍",
+        "😍",
+        "😂",
+        "😂",
+        "🥰",
+        "🥰",
+        "👌",
+        "👌",
+      ];
+      var shuf_emojis = emojis.sort(() => (Math.random() > 0.5 ? 2 : -1));
+      var count=0;
+      for (var i = 0; i < emojis.length; i++) {
+        let box = document.createElement("div");
+        box.className = "item";
+        box.innerHTML = shuf_emojis[i];
+
+        box.onclick=function(){
+            this.classList.add('boxOpen')
+            setTimeout(function(){
+                if(document.querySelectorAll('.boxOpen').length>1){
+                    if(document.querySelectorAll('.boxOpen')[0].innerHTML == document.querySelectorAll('.boxOpen')[1].innerHTML){
+                        document.querySelectorAll('.boxOpen')[0].classList.add('boxMatch')
+                        document.querySelectorAll('.boxOpen')[1].classList.add('boxMatch')
+
+                        document.querySelectorAll('.boxOpen')[1].classList.remove('boxOpen')
+                        document.querySelectorAll('.boxOpen')[0].classList.remove('boxOpen')
+                        count+=1;
+                        document.getElementById('score').innerText=count;        
+                        if(document.querySelectorAll('.boxMatch').length==emojis.length){
+                            alert('You win the game');
+                        }
+                        
+                    }else{
+                        document.querySelectorAll('.boxOpen')[1].classList.remove('boxOpen')
+                        document.querySelectorAll('.boxOpen')[0].classList.remove('boxOpen')
+                    }        
+
+                }
+            },500)
+        }
+        document.querySelector(".game").appendChild(box);
+      }
+    </script>
+  </body>
+</html>
