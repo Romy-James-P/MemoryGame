@@ -1,0 +1,105 @@
+:root{
+    --expColour: #dc143c;
+}
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+body{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* width: 100vw; */
+    background: #0a3c2f;
+}
+.container1{
+    width: 350px;
+    border:1px solid red;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: #0d614b;
+    padding: 40px 10px;
+    border-radius: 10px;
+}
+.container1 h2{
+    font-size: 3em;
+    color: white;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.1em;
+}
+.timer-score {
+    display: flex;
+    justify-content: space-between;
+    gap:40px;
+}
+.timer-score h3{
+    font-size: 2em;
+    color: gold;
+    letter-spacing: 0.1em;
+}
+.restart{
+    padding:15px 20px;
+    color: #267c65;
+    background: white;
+    border: none;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 10px;
+}
+.game{
+    width : 300px;
+    height : 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+.item{
+    border: 3px solid var(--expColour);
+    position: relative;
+    width: 67px;
+    height: 67px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    background: white;
+    transform: rotateY(180deg);
+    transition: 0.25s;
+    border-radius: 5px;
+}
+.item.boxOpen{
+    transform: rotateY(0deg);
+    border-radius: 5px;
+    border: 3px solid var(--expColour);
+}
+.item::after{
+    content:'';
+    position: absolute;
+    inset: 0;
+    background: #209d7b;
+    /* opacity: 0.85; */
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    border-radius: 5px;
+    border: 3px solid var(--expColour);
+}
+.boxOpen:after,.boxMatch:after{
+transform: rotateY(180deg);
+border: 3px solid var(--expColour);
+} 
